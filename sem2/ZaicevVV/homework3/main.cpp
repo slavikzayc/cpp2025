@@ -92,15 +92,13 @@ int main() {
                      return current_line.find(search_word) != std::string::npos;
                    });
 
-  const int total_chars_without_underscores =
-      std::accumulate(processed_lines.begin(), processed_lines.end(), 0,
-                      [](int sum, const std::string& current_line) {
-                        const int underscores = static_cast<int>(
-                            std::count(current_line.begin(),
-                                       current_line.end(), '_'));
-                        return sum + static_cast<int>(current_line.length()) -
-                               underscores;
-                      });
+  const int total_chars_without_underscores = std::accumulate(
+      processed_lines.begin(), processed_lines.end(), 0,
+      [](int sum, const std::string& current_line) {
+        const int underscores = static_cast<int>(
+            std::count(current_line.begin(), current_line.end(), '_'));
+        return sum + static_cast<int>(current_line.length()) - underscores;
+      });
 
   std::vector<int> line_lengths;
   line_lengths.reserve(processed_lines.size());
